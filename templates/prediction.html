@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+  <div class="media">
+      {% if filename %}
+          <div>
+              <img class="boxed account-img" src="{{ url_for('display_image', filename=filename) }}">
+          </div>
+      {% endif %}
+  </div>
+  <br>
+  <h2><div class="article-title">Prediction: {{ result }} (Probability - {{ prob }})</div></h2>
+</div>
+<div class="content-section">
+ <h2><div class="article-title">Grad-CAM Analysis</div></h2>
+  <div class="flex-container">
+    <div class="flex-child">
+        <br>
+        {% if filename %}
+            <div>
+                <img class="boxed account-img" src="{{ url_for('display_image', filename=filename) }}">
+                    <h3><div class="article-title">Original</div></h3>
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="flex-child">
+        <br>
+        {% if filename %}
+            <div>
+                <img class="boxed account-img" src="{{ url_for('display_image', filename='heatmap_overlay_'+filename) }}">
+                    <h3><div class="article-title">Heatmap</div></h3>
+            </div>
+        {% endif %}
+    </div>
+    
+  </div>
+</div>
+{% endblock content %}
